@@ -9,6 +9,8 @@ import theme from "../styles/theme"
 import TopNav from "../components/TopNav"
 import { persistor, store } from "../redux/store"
 import { ToastContainer } from "react-toastify"
+import { PersistGate } from "redux-persist/integration/react"
+import "react-toastify/dist/ReactToastify.css"
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()

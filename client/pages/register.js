@@ -6,14 +6,20 @@ import Button from "@mui/material/Button"
 import { useState } from "react"
 import validationUtility from "../utils/validationUtility"
 import Banner from "../components/Banner"
+import agent from "../utils/agent"
+import { toast } from "react-toastify"
+import { useRouter } from "next/router"
+import LoadingButton from "@mui/lab/LoadingButton"
 
 const Register = () => {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     validation: false,
   })
+  const [loading, setLoading] = useState(false)
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -33,12 +39,27 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
     setFormData((prev) => ({ ...prev, validation: true }))
     const validationResponse = await formValidation()
     if (validationResponse) {
-      console.log(formData)
+      const { name, email, password } = formData
+      const response = await agent.Auth.register({ name, email, password })
+      setLoading(false) // after getting response set loading to false, whether error or not
+      if (response) {
+        // no error (if error then will get caught in axios interceptor and response will be undefined)
+        toast.success(response.message)
+        setFormData((prev) => ({
+          ...prev,
+          name: "",
+          email: "",
+          password: "",
+          validation: false,
+        }))
+        router.push("/login")
+      }
     } else {
-      console.log("error")
+      toast.error("Please fill all the required fields")
     }
   }
 
@@ -114,9 +135,14 @@ const Register = () => {
               />
             </Grid>
             <Grid item>
-              <Button type="submit" variant="contained" size="large">
+              <LoadingButton
+                loading={loading}
+                type="submit"
+                variant="contained"
+                size="large"
+              >
                 Register
-              </Button>
+              </LoadingButton>
             </Grid>
           </Grid>
         </form>
