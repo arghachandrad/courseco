@@ -5,11 +5,11 @@ import TextField from "@mui/material/TextField"
 import Button from "@mui/material/Button"
 import { useState } from "react"
 import validationUtility from "../utils/validationUtility"
-import Banner from "../components/Banner"
 import agent from "../utils/agent"
 import { toast } from "react-toastify"
 import { useRouter } from "next/router"
 import LoadingButton from "@mui/lab/LoadingButton"
+import bg from "../static/images/4354122.jpg"
 
 const Register = () => {
   const router = useRouter()
@@ -65,8 +65,19 @@ const Register = () => {
 
   return (
     <>
-      <Banner text="Register" />
-      <Paper sx={{ p: 2, maxWidth: 800, mx: "auto", mt: 5 }}>
+      {/* <Banner text="Register" /> */}
+      <Paper
+        sx={{
+          p: 2,
+          m: 2,
+          maxWidth: 800,
+          mt: 5,
+          marginLeft: "auto",
+          backgroundImage: `url(${bg.src})`,
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
         <form onSubmit={handleSubmit}>
           <Grid container spacing={4} justifyContent="center">
             <Grid item xs={12}>
