@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from "axios"
 import { toast } from "react-toastify"
 
-axios.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_URL
+axios.defaults.baseURL = "/api"
 
 // Helper fundtion for getting actual data from axios response
 const responseBody = (response) => response.data
