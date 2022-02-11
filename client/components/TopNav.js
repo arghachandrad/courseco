@@ -57,6 +57,9 @@ const TopNav = () => {
       toast.success(response.message)
       router.push("/login")
     }
+    if (setting === "Dashboard") {
+      router.push("/user")
+    }
     // closing the menu
     handleCloseUserMenu()
   }
