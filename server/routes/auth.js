@@ -1,8 +1,10 @@
 import express from "express"
-import { register } from "../controllers/auth"
+import { register, login, logout } from "../controllers/auth"
 
 const router = express.Router()
 
 router.post("/register", register)
+router.post("/login", login)
+router.get("/logout", logout)
 
 module.exports = router

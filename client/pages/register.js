@@ -9,7 +9,7 @@ import agent from "../utils/agent"
 import { toast } from "react-toastify"
 import { useRouter } from "next/router"
 import LoadingButton from "@mui/lab/LoadingButton"
-import bg from "../static/images/4354122.jpg"
+import Link from "next/link"
 
 const Register = () => {
   const router = useRouter()
@@ -69,13 +69,9 @@ const Register = () => {
       <Paper
         sx={{
           p: 2,
-          m: 2,
           maxWidth: 800,
           mt: 5,
-          marginLeft: "auto",
-          backgroundImage: `url(${bg.src})`,
-          backgroundSize: "contain",
-          backgroundRepeat: "no-repeat",
+          mx: "auto",
         }}
       >
         <form onSubmit={handleSubmit}>
@@ -154,6 +150,14 @@ const Register = () => {
               >
                 Register
               </LoadingButton>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography sx={{ display: "inline" }} variant="body2">
+                Already registered ?
+              </Typography>
+              <Link href="/login">
+                <a>Login</a>
+              </Link>
             </Grid>
           </Grid>
         </form>

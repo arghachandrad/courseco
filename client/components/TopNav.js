@@ -14,8 +14,8 @@ import MenuItem from "@mui/material/MenuItem"
 import Link from "next/link"
 import { useRouter } from "next/router"
 
-const pages = ["Login", "Register"]
-const settings = ["Profile", "Account", "Dashboard", "Logout"]
+const pages = ["Login", "Register"] // menu when in logout state
+const settings = ["Profile", "Account", "Dashboard", "Logout"] // menus when in logged in state
 
 const TopNav = () => {
   const router = useRouter()
@@ -113,7 +113,14 @@ const TopNav = () => {
               <Button
                 key={page}
                 onClick={() => handleRedirect(page)}
-                sx={{ my: 2, color: "#111", display: "block" }}
+                sx={{
+                  my: 2,
+                  color:
+                    router.pathname === `/${page.toLowerCase()}`
+                      ? "primary"
+                      : "#111",
+                  display: "block",
+                }}
               >
                 {page}
               </Button>
