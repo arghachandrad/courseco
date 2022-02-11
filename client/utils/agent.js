@@ -21,6 +21,7 @@ const Auth = {
   register: (formData) => nonAuthRequests.post("/register", formData),
   login: (formData) => nonAuthRequests.post("/login", formData),
   logout: () => nonAuthRequests.get("/logout"),
+  getCurrentUser: () => nonAuthRequests.get("/current-user"),
 }
 
 // in request header putting csrf (prevention against csrf attacks)
