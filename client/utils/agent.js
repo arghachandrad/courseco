@@ -46,10 +46,7 @@ const nonAuthRequests = {
 const Auth = {
   register: (formData) => nonAuthRequests.post("/register", formData),
   login: (formData) => nonAuthRequests.post("/login", formData),
-  // addItem: (productId: number, quantity: number = 1) =>
-  //   requests.post(`basket?productId=${productId}&quantity=${quantity}`, {}),
-  // removeItem: (productId: number, quantity: number = 1) =>
-  //   requests.delete(`basket?productId=${productId}&quantity=${quantity}`),
+  logout: () => nonAuthRequests.get("/logout"),
 }
 
 const agent = {
