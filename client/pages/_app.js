@@ -11,12 +11,19 @@ import { persistor, store } from "../redux/store"
 import { ToastContainer } from "react-toastify"
 import { PersistGate } from "redux-persist/integration/react"
 import "react-toastify/dist/ReactToastify.css"
+import { useEffect } from "react"
+import { getCsrfToken } from "../utils/agent"
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
 
 export default function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
+
+  useEffect(() => {
+    // prevention agains csrf attacks
+    getCsrfToken()
+  }, [])
 
   return (
     <CacheProvider value={emotionCache}>

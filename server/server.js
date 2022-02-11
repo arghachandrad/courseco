@@ -3,6 +3,8 @@ import cors from "cors"
 import { readdirSync } from "fs"
 const morgan = require("morgan")
 import mongoose from "mongoose"
+var cookieParser = require("cookie-parser")
+var csrf = require("csurf")
 require("dotenv").config()
 
 // create express app
@@ -21,6 +23,15 @@ app.use(morgan("dev"))
 
 // autoload route
 readdirSync("./routes").map((r) => app.use("/api", require(`./routes/${r}`)))
+
+// csrf
+app.use(cookieParser())
+app.use(csrf({ cookie: true }))
+
+app.get("/api/csrf-token", function (req, res) {
+  // pass the csrfToken to the view
+  res.json({ success: true, csrfToken: req.csrfToken() })
+})
 
 // route
 app.get("/")
