@@ -6,7 +6,6 @@ import createEmotionCache from "../styles/createEmotionCache"
 import { Provider } from "react-redux"
 import "/styles/globals.css"
 import theme from "../styles/theme"
-import TopNav from "../components/TopNav"
 import { persistor, store } from "../redux/store"
 import { ToastContainer } from "react-toastify"
 import { PersistGate } from "redux-persist/integration/react"
@@ -19,6 +18,8 @@ const clientSideEmotionCache = createEmotionCache()
 
 export default function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
+
+  const getLayout = Component.getLayout ?? ((page) => page)
 
   useEffect(() => {
     // prevention agains csrf attacks
@@ -36,7 +37,6 @@ export default function MyApp(props) {
           <ThemeProvider theme={theme}>
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
-            <TopNav />
             <ToastContainer
               position="top-center"
               autoClose={3000}
@@ -44,7 +44,8 @@ export default function MyApp(props) {
               newestOnTop={false}
               closeOnClick
             />
-            <Component {...pageProps} />
+            {getLayout(<Component {...pageProps} />)}
+            {/* <Component {...pageProps} /> */}
           </ThemeProvider>
         </PersistGate>
       </Provider>

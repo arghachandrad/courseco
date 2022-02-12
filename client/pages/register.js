@@ -10,6 +10,7 @@ import { toast } from "react-toastify"
 import { useRouter } from "next/router"
 import LoadingButton from "@mui/lab/LoadingButton"
 import Link from "next/link"
+import TopNav from "../components/TopNav"
 
 const Register = () => {
   const router = useRouter()
@@ -65,6 +66,7 @@ const Register = () => {
 
   return (
     <>
+      <TopNav />
       {/* <Banner text="Register" /> */}
       <Paper
         sx={{

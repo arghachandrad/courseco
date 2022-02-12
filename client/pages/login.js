@@ -11,6 +11,7 @@ import Link from "next/link"
 import agent from "../utils/agent"
 import { useDispatch } from "react-redux"
 import { login } from "../redux/auth/actions"
+import TopNav from "../components/TopNav"
 
 const Login = () => {
   const router = useRouter()
@@ -56,7 +57,7 @@ const Login = () => {
           password: "",
           validation: false,
         }))
-        router.push("/")
+        router.push("/user")
       }
     } else {
       setLoading(false)
@@ -66,6 +67,7 @@ const Login = () => {
 
   return (
     <>
+      <TopNav />
       <Paper sx={{ p: 2, maxWidth: 800, mx: { xs: 3, md: "auto" }, mt: 5 }}>
         <form onSubmit={handleSubmit}>
           <Grid container spacing={4} justifyContent="center">

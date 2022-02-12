@@ -1,4 +1,5 @@
 import UserRoute from "../../components/routes/UserRoute"
+import { DashboardLayout } from "../../layout/DashboardLayout"
 
 const UserIndex = () => {
   return (
@@ -7,5 +8,7 @@ const UserIndex = () => {
     </UserRoute>
   )
 }
+
+UserIndex.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>
 
 export default UserIndex
