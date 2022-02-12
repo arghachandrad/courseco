@@ -22,7 +22,7 @@ import { authSelector } from "../redux/auth/selector"
 const pages = ["Login", "Register"] // menu when in logout state
 const settings = ["Profile", "Account", "Dashboard", "Logout"] // menus when in logged in state
 
-const TopNav = () => {
+const TopNav = ({ onSidebarOpen }) => {
   const router = useRouter()
   const dispatch = useDispatch()
   const { user } = useSelector(authSelector)
@@ -68,20 +68,35 @@ const TopNav = () => {
     <AppBar position="static" sx={{ background: "#fff", color: "#111" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex", flexGrow: 1 },
-              cursor: "pointer",
-              fontWeight: "bold",
-            }}
-            onClick={() => router.push("/")}
-          >
-            Edemy
-          </Typography>
+          {user && (
+            <IconButton
+              onClick={onSidebarOpen}
+              sx={{
+                display: {
+                  xs: "inline-flex",
+                  lg: "none",
+                },
+              }}
+            >
+              <MenuIcon fontSize="small" />
+            </IconButton>
+          )}
+          {!user && (
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex", flexGrow: 1 },
+                cursor: "pointer",
+                fontWeight: "bold",
+              }}
+              onClick={() => router.push("/")}
+            >
+              Edemy
+            </Typography>
+          )}
 
           {!user && (
             <Box
@@ -125,20 +140,22 @@ const TopNav = () => {
               </Menu>
             </Box>
           )}
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{
-              flexGrow: 1,
-              display: { xs: "flex", md: "none" },
-              cursor: "pointer",
-              fontWeight: "bold",
-            }}
-            onClick={() => router.push("/")}
-          >
-            Edemy
-          </Typography>
+          {!user && (
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{
+                flexGrow: 1,
+                display: { xs: "flex", md: "none" },
+                cursor: "pointer",
+                fontWeight: "bold",
+              }}
+              onClick={() => router.push("/")}
+            >
+              Edemy
+            </Typography>
+          )}
           {!user && (
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               {pages.map((page) => (
@@ -160,7 +177,7 @@ const TopNav = () => {
             </Box>
           )}
           {user && (
-            <Box sx={{ flexGrow: 0 }}>
+            <Box sx={{ flexGrow: 0, marginLeft: "auto" }}>
               <Tooltip title="Open settings">
                 <Box
                   display="flex"
