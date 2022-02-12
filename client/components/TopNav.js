@@ -94,7 +94,7 @@ const TopNav = ({ onSidebarOpen }) => {
               }}
               onClick={() => router.push("/")}
             >
-              Edemy
+              Courseco
             </Typography>
           )}
 
@@ -153,7 +153,7 @@ const TopNav = ({ onSidebarOpen }) => {
               }}
               onClick={() => router.push("/")}
             >
-              Edemy
+              Courseco
             </Typography>
           )}
           {!user && (
