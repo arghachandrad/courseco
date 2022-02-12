@@ -43,7 +43,6 @@ export default function MyApp(props) {
               hideProgressBar={true}
               newestOnTop={false}
               closeOnClick
-              theme="colored"
             />
             <Component {...pageProps} />
           </ThemeProvider>

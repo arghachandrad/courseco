@@ -71,7 +71,7 @@ const Register = () => {
           p: 2,
           maxWidth: 800,
           mt: 5,
-          mx: "auto",
+          mx: { xs: 3, md: "auto" },
         }}
       >
         <form onSubmit={handleSubmit}>

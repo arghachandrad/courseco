@@ -22,6 +22,10 @@ const Auth = {
   login: (formData) => nonAuthRequests.post("/login", formData),
   logout: () => nonAuthRequests.get("/logout"),
   getCurrentUser: () => nonAuthRequests.get("/current-user"),
+  sendPasswordResetEmail: (formData) =>
+    nonAuthRequests.post("/forgot-password", formData),
+  resetPassword: (formData) =>
+    nonAuthRequests.post("/reset-password", formData),
 }
 
 // in request header putting csrf (prevention against csrf attacks)

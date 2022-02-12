@@ -66,7 +66,7 @@ const Login = () => {
 
   return (
     <>
-      <Paper sx={{ p: 2, maxWidth: 800, mx: "auto", mt: 5 }}>
+      <Paper sx={{ p: 2, maxWidth: 800, mx: { xs: 3, md: "auto" }, mt: 5 }}>
         <form onSubmit={handleSubmit}>
           <Grid container spacing={4} justifyContent="center">
             <Grid item xs={12}>
@@ -126,13 +126,29 @@ const Login = () => {
                 Login
               </LoadingButton>
             </Grid>
-            <Grid item xs={12}>
-              <Typography sx={{ display: "inline" }} variant="body2">
-                Don't have an account ?
-              </Typography>
-              <Link href="/register">
-                <a>Register</a>
-              </Link>
+            <Grid item container>
+              <Grid item xs={12}>
+                <Typography
+                  sx={{ display: "inline", marginRight: 1 }}
+                  variant="body2"
+                >
+                  Don't have an account ?
+                </Typography>
+                <Link href="/register">
+                  <a>Register</a>
+                </Link>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography
+                  sx={{ display: "inline", marginRight: 1 }}
+                  variant="body2"
+                >
+                  Forgot your password ?
+                </Typography>
+                <Link href="/forgot-password">
+                  <a style={{ color: "red" }}>Forgot Password</a>
+                </Link>
+              </Grid>
             </Grid>
           </Grid>
         </form>
@@ -141,6 +157,7 @@ const Login = () => {
   )
 }
 
+// logged in user cannot see this page
 export const getServerSideProps = async function ({ req, res }) {
   const { token } = req.cookies
 
