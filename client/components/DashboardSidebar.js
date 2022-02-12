@@ -23,7 +23,7 @@ import { NavItem } from "./NavItem"
 
 const items = [
   {
-    href: "/",
+    href: "/user",
     icon: <ChartBarIcon fontSize="small" />,
     title: "Dashboard",
   },
